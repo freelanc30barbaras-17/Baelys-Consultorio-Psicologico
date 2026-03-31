@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baelys - Creciendo desde adentro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #0b0f2f, #2a0a3d, #1a1f4f);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+        }
+
+        .logo-text h1 {
+            font-family: 'Monotype Corsiva', cursive;
+            font-size: 2.2rem;
+            color: #f5d78e;
+            letter-spacing: 2px;
+        }
+
+        .logo-text .subtitle {
+            font-family: 'Monotype Corsiva', cursive;
+            font-size: 0.9rem;
+            background: linear-gradient(90deg, #e6e6e6, #c0c0c0, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: #f5d78e;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #8ef5c2;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0b0f2f 0%, #1a1f4f 50%, #2a0a3d 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #f5d78e;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #8ef5c2, #6ad1ff);
+            color: #0b0f2f;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(142, 245, 194, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(142, 245, 194, 0.6);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        h2.section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #f5d78e, #d18eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Servicios */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: rgba(255,255,255,0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(142, 245, 194, 0.2);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .service-card h3 {
+            color: #0b0f2f;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .service-card ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-card ul li::before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+            color: #6ad1ff;
+        }
+
+        .whatsapp-service-btn {
+            background: linear-gradient(135deg, #6ad1ff, #ff8ed1);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-service-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(106, 209, 255, 0.4);
+        }
+
+        /* Talleres */
+        .workshops-container {
+            background: linear-gradient(135deg, rgba(142,245,194,0.1), rgba(106,209,255,0.1));
+            padding: 4rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+
+        .workshop-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .workshop-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .workshop-category h4 {
+            color: #0b0f2f;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .workshop-list {
+            list-style: none;
+        }
+
+        .workshop-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .workshop-list li:hover {
+            background: rgba(142,245,194,0.2);
+            padding-left: 1rem;
+        }
+
+        /* Reserva */
+        .reservation-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #0b0f2f;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(142,245,194,0.3);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #8ef5c2;
+        }
+
+        /* Sobre mí */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, #8ef5c2, #6ad1ff);
+            height: 400px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        /* Testimonios */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: linear-gradient(135deg, rgba(209,142,255,0.1), rgba(255,142,209,0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #0b0f2f;
+        }
+
+        /* Social */
+        .social-links {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #f5d78e;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #8ef5c2;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #0b0f2f, #2a0a3d);
+            color: #f5d78e;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        /* WhatsApp Flotante */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 10px 25px rgba(37,211,102,0.5);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(37,211,102,0.7);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .workshops-container {
+                padding: 2rem;
+            }
+
+            section {
+                padding: 40px 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo-container">
+                <img src="logo.png" alt="Logo Baelys" class="logo">
+                <div class="logo-text">
+                    <h1>Baelys</h1>
+                    <div class="subtitle">Creciendo desde adentro</div>
+                </div>
+            </div>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#reservas">Reservar</a></li>
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h2>Tu bienestar emocional comienza aquí</h2>
+            <p>Espacio seguro y profesional para acompañarte en tu crecimiento personal</p>
+            <a href="#reservas" class="cta-button">Reservar mi cita ahora</a>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" style="background: linear-gradient(135deg, #f8f9ff, #f0f4ff);">
+        <div>
+            <h2 class="section-title">Servicios Profesionales</h2>
+            
+            <!-- Atención Individual -->
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3><i class="fas fa-user"></i> Atención Individual Virtual</h3>
+                    <ul>
+                        <li>Anxiety leve</li>
+                        <li>Autoestima</li>
+                        <li>Apoyo emocional</li>
+                        <li>Orientación vocacional</li>
+                        <li>Dificultades en relaciones</li>
+                    </ul>
+                    <button class="whatsapp-service-btn" onclick="contactWhatsApp('Consulta individual - S/80 por sesión de 50min')">
+                        <i class="fab fa-whatsapp"></i> Reservar Ahora
+                    </button>
+                </div>
+
+                <div class="service-card">
+                    <h3><i class="fas fa-clipboard-check"></i> Evaluaciones</h3>
+                    <ul>
+                        <li>Evaluación psicológica (por grupo etario)</li>
+                        <li>Certificado de salud mental</li>
+                        <li>Informes psicológicos</li>
+                        <li>Informes psicolaborales</li>
+                    </ul>
+                    <button class="whatsapp-service-btn" onclick="contactWhatsApp('Evaluación psicológica - S/120')">
+                        <i class="fab fa-whatsapp"></i> Solicitar Evaluación
+                    </button>
+                </div>
+            </div>
+
+            <!-- Talleres y Charlas -->
+            <div class="workshops-container">
+                <h3 style="text-align: center; color: #0b0f2f; margin-bottom: 2rem;">
+                    <i class="fas fa-chalkboard-teacher"></i> Talleres y Charlas Personalizados
+                </h3>
+                <div class="workshop-categories">
+                    <div class="workshop-category">
+                        <h4><i class="fas fa-school"></i> EDUCATIVO (S/250 - 2 horas)</h4>
+                        <ul class="workshop-list">
+                            <li>Psicoeducación</li>
+                            <li>Habilidades sociales</li>
+                            <li>Autoestima</li>
+                            <li>Manejo del estrés</li>
+                            <li>Trabajo en equipo</li>
+                        </ul>
+                        <button class="whatsapp-service-btn" onclick="contactWhatsApp('Taller Educativo - S/250')">
+                            <i class="fab fa-whatsapp"></i> Contratar Taller
+                        </button>
+                    </div>
+
+                    <div class="workshop-category">
+                        <h4><i class="fas fa-briefcase"></i> ORGANIZACIONAL (S/400 - 2 horas)</h4>
+                        <ul class="workshop-list">
+                            <li>Salud mental y bienestar</li>
+                            <li>Clima laboral</li>
+                            <li>Habilidades blandas</li>
+                            <li>Manejo del estrés laboral</li>
+                            <li>Liderazgo emocional</li>
+                        </ul>
+                        <button class="whatsapp-service-btn" onclick="contactWhatsApp('Taller Organizacional - S/400')">
+                            <i class="fab fa-whatsapp"></i> Contratar Capacitación
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reserva -->
+    <section id="reservas" style="background: linear-gradient(135deg, #f0f8ff, #e6f3ff);">
+        <h2 class="section-title">Reserva tu Cita</h2>
+        <form class="reservation-form" id="reservationForm">
+            <div class="form-group">
+                <label><i class="fas fa-user"></i> Nombre Completo</label>
+                <input type="text" id="nombre" required>
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-birthday-cake"></i> Edad</label>
+                <input type="number" id="edad" min="12" max="100" required>
+            </div>
+            <div class="form-group">
+                <label><i
